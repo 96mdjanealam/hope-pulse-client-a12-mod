@@ -6,7 +6,9 @@ import axios from "axios";
 import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import signuplottie from '../../assets/signUpJsonlottie.json'
 import { Link, useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -319,11 +321,12 @@ export default function Registration() {
 
             {/* Right Section: Image */}
             <div className="md:w-1/2 flex justify-center">
-              <img
-                src={bloodDrop_img}
-                alt="Registration"
-                className="w-full max-w-sm object-contain max-h-72 rounded-lg"
-              />
+            <Lottie
+            animationData={signuplottie} // Pass the Lottie JSON file here
+            loop={true} // Enable looping
+            autoplay={true} // Autoplay the animation
+            style={{ width: "100%", maxWidth: "400px" }} // Adjust the size
+          />
             </div>
           </div>
         </section>
