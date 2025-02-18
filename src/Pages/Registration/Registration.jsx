@@ -319,13 +319,13 @@ export default function Registration() {
               </p>
             </div>
 
-            {/* Right Section: Image */}
+           
             <div className="md:w-1/2 flex justify-center">
             <Lottie
-            animationData={signuplottie} // Pass the Lottie JSON file here
-            loop={true} // Enable looping
-            autoplay={true} // Autoplay the animation
-            style={{ width: "100%", maxWidth: "400px" }} // Adjust the size
+            animationData={signuplottie} 
+            loop={true}
+            autoplay={true}
+            style={{ width: "100%", maxWidth: "400px" }} 
           />
             </div>
           </div>

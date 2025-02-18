@@ -33,7 +33,7 @@ const Dashboard = () => {
   };
 
   const isSelected = (path) => {
-    return location.pathname === path ? "bg-blue-800" : "";
+    return location.pathname === path ? "bg-red-500/50 border-2 border-red-500" : "";
   };
 
   const links = (
@@ -136,7 +136,7 @@ const Dashboard = () => {
   return (
     <div className="font-ysabeau-infant flex min-h-screen bg-gray-100">
     
-      <aside className="bg-blue-700 text-white w-64 p-4 hidden md:block">
+      <aside className="bg-gray-700 text-white w-64 p-4 hidden md:block">
         <Link onClick={toggleSidebar} to="/dashboard">
           <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
         </Link>
@@ -177,7 +177,7 @@ const Dashboard = () => {
       
         <aside
           id="mobileSidebar"
-          className={`bg-blue-700 text-white w-64 p-4 fixed top-0 left-0 h-full z-50 transition-transform duration-300 ${
+          className={`bg-gray-700 text-white w-64 p-4 fixed top-0 left-0 h-full z-50 transition-transform duration-300 ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:hidden`}
         >
