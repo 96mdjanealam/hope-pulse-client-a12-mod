@@ -123,13 +123,13 @@ export default function Login() {
           <p className="mt-4 text-center">Are your new? <Link to="/registration"><span className="text-blue-500 font-semibold hover:underline cursor-pointer">Register here.</span></Link></p>
         </div>
 
-        {/* Right Section: Image */}
+       
         <div className="md:w-1/2 flex justify-center">
         <Lottie
-            animationData={donationLottie} // Pass the Lottie JSON file here
-            loop={true} // Enable looping
-            autoplay={true} // Autoplay the animation
-            style={{ width: "100%", maxWidth: "400px" }} // Adjust the size
+            animationData={donationLottie}
+            loop={true} 
+            autoplay={true} 
+            style={{ width: "100%", maxWidth: "400px" }} 
           />
         </div>
       </div>
