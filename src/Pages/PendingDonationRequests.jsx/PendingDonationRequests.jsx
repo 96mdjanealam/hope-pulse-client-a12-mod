@@ -13,15 +13,15 @@ export default function PendingDonationRequests() {
     }, [axiosPublic]);
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 my-4">
             {pendingRequests.length < 1 ? (
                 <h1 className="text-2xl mb-4">No Pending Donation Requests found</h1>
             ) : (
                 <h1 className="text-2xl font-bold mb-4">Pending Donation Requests</h1>
             )}
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-300">
+            <div className="overflow-x-auto rounded-xl shadow-xl">
+                <table className="min-w-full bg-white">
                     <thead>
                         <tr>
                             <th className="py-2 px-4 border-b text-left">Recipient Name</th>
@@ -42,7 +42,7 @@ export default function PendingDonationRequests() {
                                 <td className="py-2 px-4 border-b">{request.time}</td>
                                 <td className="py-2 px-4 border-b">
                                     <Link to={`/donation-request-details/${request._id}`}>
-                                        <button className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600">
+                                        <button className="btn btn-sm btn-warning">
                                             View
                                         </button>
                                     </Link>

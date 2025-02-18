@@ -304,7 +304,7 @@ export default function Registration() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition"
+                  className="btn w-full btn-success"
                 >
                   Register
                 </button>

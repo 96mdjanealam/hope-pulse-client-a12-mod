@@ -58,7 +58,7 @@ export default function AllDonationRequests() {
   };
 
   return (
-    <div className=" md:p-6 rounded-lg ">
+    <div>
       <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
         All Donation Requests
       </h2>

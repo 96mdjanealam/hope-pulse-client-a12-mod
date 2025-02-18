@@ -39,14 +39,14 @@ export default function ContentManagement() {
     <div>
       <div className="flex justify-end">
         <Link to="/dashboard/content-management/add-blog">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+          <button className="btn btn-success btn-sm">
             Add blog
           </button>
         </Link>
       </div>
       <div className="grid grid-cols-1 gap-2 mt-4">
         {blogs.map((blog, index) => (
-          <div key={index} className="border rounded-lg shadow p-4 mb-4">
+          <div key={index} className="border rounded-lg shadow p-4 mb-4 bg-white">
             <img
               src={blog.thumbnailUrl}
               alt={blog.title}
@@ -74,14 +74,14 @@ export default function ContentManagement() {
                 {blog.status === "draft" ? (
                   <button
                     onClick={() => handlePublish(blog._id)}
-                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    className="btn btn-success btn-sm"
                   >
                     Publish
                   </button>
                 ) : (
                   <button
                     onClick={() => handleUnpublish(blog._id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                    className="btn btn-error btn-sm"
                   >
                     Unpublish
                   </button>

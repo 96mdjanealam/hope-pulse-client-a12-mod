@@ -135,8 +135,8 @@ const Dashboard = () => {
 
   return (
     <div className="font-ysabeau-infant flex min-h-screen bg-gray-100">
-    
-      <aside className="bg-gray-700 text-white w-64 p-4 hidden md:block">
+      {/* Fixed Sidebar for Desktop */}
+      <aside className="bg-gray-700 text-white w-64 p-4 fixed top-0 left-0 h-full hidden md:block">
         <Link onClick={toggleSidebar} to="/dashboard">
           <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
         </Link>
@@ -144,9 +144,9 @@ const Dashboard = () => {
         <nav>{links}</nav>
       </aside>
 
-   
-      <div className="flex-1 overflow-x-auto">
-      
+      {/* Main Content Area */}
+      <div className="flex-1 overflow-x-auto md:ml-64">
+        {/* Header for Mobile */}
         <header className="bg-white shadow-md p-4 flex justify-between items-center md:hidden">
           <Link to="/dashboard">
             <h1 className="text-lg font-bold cursor-pointer">Dashboard</h1>
@@ -159,22 +159,24 @@ const Dashboard = () => {
             />
           </button>
         </header>
+
+        {/* Buttons for Navigation and Logout */}
         <div className="flex justify-end p-6 mx-auto gap-4 border-b-2 border-gray-300">
           <button
             onClick={() => navigate("/")}
-            className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
+            className="btn btn-success btn-sm"
           >
             Go Home
           </button>
           <button
             onClick={handleLogOut}
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+            className="btn btn-warning btn-sm"
           >
             Log Out
           </button>
         </div>
 
-      
+        {/* Mobile Sidebar */}
         <aside
           id="mobileSidebar"
           className={`bg-gray-700 text-white w-64 p-4 fixed top-0 left-0 h-full z-50 transition-transform duration-300 ${
@@ -188,7 +190,7 @@ const Dashboard = () => {
           <nav>{links}</nav>
         </aside>
 
-       
+        {/* Main Content */}
         <main className="p-6">
           <Outlet></Outlet>
         </main>

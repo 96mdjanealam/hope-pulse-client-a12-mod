@@ -92,7 +92,7 @@ export default function CreateDonation() {
   };
 
   return (
-    <div className="bg-white p-6  rounded-lg shadow-lg w-full mt-8 sm:mt-0">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-8 sm:mt-0">
       {userInfo.status === "Blocked" && (
         <p className="text-center py-2 text-lg font-semibold text-red-500">
           Note: You cannot create donation requests
@@ -283,7 +283,7 @@ export default function CreateDonation() {
    
         <button
           type="submit"
-          className="w-full bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition "
+          className="btn btn-success w-full"
         >
           Request
         </button>

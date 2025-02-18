@@ -82,7 +82,7 @@ export default function DashboardHome() {
   };
 
   return (
-    <div className=" md:p-6 w-full sm:mt-0">
+    <div className=" ">
       <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
         Welcome {user?.displayName}
       </h2>
@@ -91,7 +91,7 @@ export default function DashboardHome() {
       )}
 
       {isAdmin || userInfo?.role === "Volunteer" ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 p-4 md:p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Total Users Card */}
           <div className="bg-white shadow-lg rounded-lg p-4 md:p-6 flex items-center">
             <div className="text-blue-500 text-3xl md:text-4xl">
@@ -225,7 +225,7 @@ export default function DashboardHome() {
                         </>
                       )}
                       <Link to={`/dashboard/request/edit/${item._id}`}>
-                        <button className="bg-blue-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-md hover:bg-blue-600 transition-colors text-xs md:text-sm">
+                        <button className="btn btn-sm btn-success">
                           Edit
                         </button>
                       </Link>

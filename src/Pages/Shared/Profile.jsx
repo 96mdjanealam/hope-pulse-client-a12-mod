@@ -130,7 +130,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto">
     {userData && Object.keys(userData).length > 0 && (
       <div className="flex flex-col md:flex-row gap-8">
         {/* Profile Image Section */}
@@ -157,9 +157,7 @@ export default function Profile() {
             <button
               type="button"
               onClick={toggleEdit}
-              className={`text-white py-2 px-4 rounded-lg ${
-                isEditable ? "bg-gray-600" : "bg-blue-500"
-              } hover:bg-blue-600`}
+              className={`btn ${isEditable?" btn-error":"btn-success"}  btn-sm`}
             >
               {isEditable ? "Cancel Edit" : "Edit"}
             </button>
@@ -321,7 +319,7 @@ export default function Profile() {
               {isEditable && (
                 <button
                   type="submit"
-                  className="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="btn btn-success w-full"
                 >
                   Save Changes
                 </button>

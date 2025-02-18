@@ -53,7 +53,7 @@ export default function AllUsers() {
   };
 
   return (
-    <div className="overflow-x-auto p-6">
+    <div>
       <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
         <thead className="bg-gray-50">
           <tr>

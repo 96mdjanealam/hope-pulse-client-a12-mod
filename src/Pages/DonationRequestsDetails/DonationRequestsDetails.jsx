@@ -38,7 +38,7 @@ export default function DonationRequestsDetails() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 my-4">
       <h1 className="text-2xl font-bold mb-4">Donation Request Details</h1>
       <div className="bg-white p-6 rounded-lg shadow-md">
         <p>
@@ -70,7 +70,7 @@ export default function DonationRequestsDetails() {
 
       <button
         onClick={openModal}
-        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        className="btn btn-success mt-4"
       >
         Donate
       </button>
@@ -106,14 +106,14 @@ export default function DonationRequestsDetails() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="mr-2 bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600"
+                  className="btn btn-neutral btn-sm mr-2"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   onClick={handleConfirmDonation}
-                  className="bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600"
+                  className="btn btn-success btn-sm"
                 >
                   Confirm
                 </button>

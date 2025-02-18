@@ -31,7 +31,7 @@ export default function PublishedBlogs() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 my-4">
       <h1 className="text-2xl font-bold mb-6">Published Blogs</h1>
       <div className="space-y-4">
         {blogs.map((blog) => (
@@ -47,20 +47,24 @@ export default function PublishedBlogs() {
             />
          
             <div className="flex-1 w-full">
+              <div>
               <h2 className="text-xl font-semibold">{blog.title}</h2>
               <p className="text-gray-600">
                 {stripHtmlTags(blog.content).length > 100
                   ? `${stripHtmlTags(blog.content).substring(0,100)}...`
                   : stripHtmlTags(blog.content)}
               </p>
-            </div>
-          
-            <button
+              </div>
+              
+              <button
               onClick={() => openModal(blog)}
-              className="w-full md:w-auto bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+              className="btn btn-sm btn-success mt-6"
             >
               See Blog
             </button>
+            </div>
+          
+            
           </div>
         ))}
       </div>
@@ -80,7 +84,7 @@ export default function PublishedBlogs() {
             <div className="flex justify-end mt-4">
               <button
                 onClick={closeModal}
-                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+                className="btn btn-sm btn-neutral"
               >
                 Close
               </button>

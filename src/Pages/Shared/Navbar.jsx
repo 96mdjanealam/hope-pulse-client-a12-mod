@@ -93,7 +93,7 @@ export default function Navbar() {
                   )}
 
                   {isDropdownOpen && user && (
-                    <div className="absolute flex flex-col right-0 mt-2 w-48 bg-white text-gray-800 text-left rounded-md shadow-lg">
+                    <div className=" p-2 absolute flex flex-col right-0 mt-2 w-48 bg-white text-gray-800 text-left rounded-lg shadow-lg">
                       <Link
                         onClick={handleDashboard}
                         to="/dashboard"
@@ -115,7 +115,7 @@ export default function Navbar() {
 
                 {!user && (
                   <Link to="login">
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <button className="btn btn-success">
                       Login
                     </button>
                   </Link>
