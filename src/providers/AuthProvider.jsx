@@ -25,7 +25,7 @@ export default function AuthProvider({ children }) {
       axiosSecure
         .get(`/user?email=${user?.email}`)
         .then((res) => {
-          setUserInfo(res.data);
+          setUserInfo(res?.data);
         })
         .catch((err) => {
           console.error("Error fetching user data:", err);
