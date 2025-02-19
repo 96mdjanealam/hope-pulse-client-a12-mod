@@ -130,6 +130,8 @@ export default function Search() {
                   </option>
                 ))}
               </select>
+
+              
             </div>
           </div>
        
@@ -137,7 +139,7 @@ export default function Search() {
             <button
               type="button"
               onClick={handleSearch}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+              className="btn btn-success"
             >
               Search
             </button>

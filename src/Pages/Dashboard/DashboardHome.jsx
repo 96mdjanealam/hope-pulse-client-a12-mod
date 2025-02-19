@@ -10,6 +10,7 @@ import useAllDonationRequests from "../../hooks/useAllDonationRequests";
 import useAdmin from "../../hooks/useAdmin";
 import { useQuery } from "@tanstack/react-query";
 import useAllFunding from "../../hooks/useAllfunding";
+import Chart from "./Chart";
 
 export default function DashboardHome() {
   const { user } = useContext(AuthContext);
@@ -80,13 +81,21 @@ export default function DashboardHome() {
 
   return (
     <div>
-      { user ? (
+      {user ? (
         <div>
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
             Welcome {user?.displayName}
           </h2>
           {!(isAdmin || userInfo?.role === "Volunteer") && (
-            <p className="mb-4">Your latest blood donation requests</p>
+            <>
+              {tableData.length < 1 ? (
+                <p className="mb-4">
+                  You don't have any blood donation requests.
+                </p>
+              ) : (
+                <p className="mb-4">Your latest blood donation requests</p>
+              )}
+            </>
           )}
 
           {isAdmin || userInfo?.role === "Volunteer" ? (
@@ -137,115 +146,116 @@ export default function DashboardHome() {
               </div>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Recipient Name
-                    </th>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Recipient Location
-                    </th>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Donation Date
-                    </th>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Donation Time
-                    </th>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Blood Group
-                    </th>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Donor Information
-                    </th>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Donation Status
-                    </th>
-                    <th className="px-2 py-2 md:px-4 md:py-3 text-center text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {tableData.map((item) => (
-                    <tr
-                      key={item._id}
-                      className="hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
-                        {item.recipientName}
-                      </td>
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
-                        {`${item.upazilla}, ${item.district}`}
-                      </td>
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
-                        {format(new Date(item.date), "MM-dd-yyyy")}
-                      </td>
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
-                        {item.time}
-                      </td>
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
-                        {item.bloodGroup}
-                      </td>
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
-                        {item.donorName},<br />
-                        {item.donorEmail}
-                      </td>
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap">
-                        <span
-                          className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                            item.donationStatus === "done"
-                              ? "bg-green-100 text-green-800"
-                              : item.donationStatus === "canceled"
-                              ? "bg-red-100 text-red-800"
-                              : "bg-yellow-100 text-yellow-800"
-                          }`}
-                        >
-                          {item.donationStatus}
-                        </span>
-                      </td>
-                      <td className="px-2 py-2 md:px-4 md:py-4 whitespace-nowrap text-xs md:text-sm text-center">
-                        <div className="flex flex-wrap justify-center gap-1 md:gap-2">
-                          {item?.donationStatus === "inprogress" && (
-                            <>
+            <>
+              {tableData.length > 0 && (
+                <div className="overflow-x-auto rounded-lg shadow-sm">
+                  <table className="min-w-full bg-white rounded-lg overflow-hidden">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Recipient Name
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Recipient Location
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Donation Date
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Donation Time
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Blood Group
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Donor Information
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Donation Status
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {tableData.map((item) => (
+                        <tr key={item._id} className="hover:bg-gray-50 transition-colors">
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            {item.recipientName}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            {`${item.upazilla}, ${item.district}`}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            {format(new Date(item.date), "MM-dd-yyyy")}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            {item.time}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            {item.bloodGroup}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            {item.donorName}, <br />
+                            {item.donorEmail}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                                item.donationStatus === "inprogress"
+                                  ? "bg-yellow-100 text-yellow-800"
+                                  : item.donationStatus === "done"
+                                  ? "bg-green-100 text-green-800"
+                                  : "bg-red-100 text-red-800"
+                              }`}
+                            >
+                              {item.donationStatus}
+                            </span>
+                          </td>
+                          <td className="py-3 px-4 text-sm text-gray-700">
+                            <div className="flex flex-wrap gap-2">
+                              {item?.donationStatus === "inprogress" && (
+                                <>
+                                  <button
+                                    onClick={() => handleDone(item._id)}
+                                    className="btn btn-xs btn-success"
+                                  >
+                                    Done
+                                  </button>
+                                  <button
+                                    onClick={() => handleCancel(item._id)}
+                                    className="btn btn-xs btn-warning"
+                                  >
+                                    Cancel
+                                  </button>
+                                </>
+                              )}
+                              <Link to={`/dashboard/request/edit/${item._id}`}>
+                                <button className="btn btn-xs btn-success">
+                                  Edit
+                                </button>
+                              </Link>
                               <button
-                                onClick={() => handleDone(item._id)}
-                                className="bg-green-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-md hover:bg-green-600 transition-colors text-xs md:text-sm"
+                                onClick={() => handleDelete(item._id)}
+                                className="btn btn-error btn-xs"
                               >
-                                Done
+                                Delete
                               </button>
-                              <button
-                                onClick={() => handleCancel(item._id)}
-                                className="bg-red-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-md hover:bg-red-600 transition-colors text-xs md:text-sm"
-                              >
-                                Cancel
-                              </button>
-                            </>
-                          )}
-                          <Link to={`/dashboard/request/edit/${item._id}`}>
-                            <button className="btn btn-sm btn-success">
-                              Edit
-                            </button>
-                          </Link>
-                          <button
-                            onClick={() => handleDelete(item._id)}
-                            className="bg-gray-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-md hover:bg-gray-600 transition-colors text-xs md:text-sm"
-                          >
-                            Delete
-                          </button>
-                          <Link to={`/dashboard/request/view/${item._id}`}>
-                            <button className="bg-purple-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-md hover:bg-purple-600 transition-colors text-xs md:text-sm">
-                              View
-                            </button>
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                              <Link to={`/dashboard/request/view/${item._id}`}>
+                                <button className="btn btn-xs btn-neutral">
+                                  View
+                                </button>
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </>
           )}
         </div>
       ) : (
@@ -253,6 +263,8 @@ export default function DashboardHome() {
           <span className="loading loading-bars loading-md"></span>
         </div>
       )}
+      <hr className="border border-t mt-4" />
+      <Chart></Chart>
     </div>
   );
 }
