@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const Testimonials = () => {
   return (
@@ -20,7 +20,7 @@ const Testimonials = () => {
               <div className="avatar">
                 <div className="w-12 h-12 rounded-full overflow-hidden">
                   <img
-                    src="https://thumbs.dreamstime.com/b/young-man-giving-two-thumbs-up-7001706.jpg"
+                    src="https://img.freepik.com/premium-photo/excited-man-pointing-chest_251859-1951.jpg"
                     alt="User"
                     className="object-cover w-full h-full"
                   />
@@ -64,7 +64,7 @@ const Testimonials = () => {
               <div className="avatar">
                 <div className="w-12 h-12 rounded-full overflow-hidden">
                   <img
-                    src="https://thumbs.dreamstime.com/b/happy-indian-man-t-shirt-showing-thumbs-up-gesture-people-concept-smiling-young-130955451.jpg"
+                    src="https://as1.ftcdn.net/jpg/03/21/51/22/220_F_321512215_iLQIdpoXLd9gVYCtX4EZ9dyhJNz3BbTk.jpg"
                     alt="User"
                     className="object-cover w-full h-full"
                   />
