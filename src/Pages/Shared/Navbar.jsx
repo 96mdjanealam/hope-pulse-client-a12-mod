@@ -23,14 +23,14 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className="sticky top-0 z-50">
       {loading ? (
         <div className='w-full h-24 flex items-center justify-center'>
         <span className="loading loading-bars loading-md"></span>
     </div>
       ) : (
         <div>
-          <nav className="bg-gray-800 text-white">
+          <nav className="bg-gray-800 text-white ">
             <div className="container mx-auto px-4 flex justify-between items-center py-4">
               {/* Logo */}
               <div className="text-2xl font-bold flex gap-3">

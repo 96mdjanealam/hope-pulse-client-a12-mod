@@ -191,7 +191,7 @@ const Dashboard = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="p-6">
+        <main className="p-6 overflow-x-auto">
           <Outlet></Outlet>
         </main>
       </div>
