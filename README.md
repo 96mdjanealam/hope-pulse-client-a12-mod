@@ -49,8 +49,8 @@ Ensure you have the following installed:
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/96mdjanealam/hopePulse-client-a12.git
-   cd hopePulse-client-a12
+   git clone https://github.com/96mdjanealam/hope-pulse-client-a12-mod.git
+   cd hope-pulse-client-a12-mod
    ```
 
 2. **Install dependencies:**
