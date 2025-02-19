@@ -4,6 +4,8 @@ import FeaturedSection from './FeaturedSection'
 import ContactUs from './ContactUs'
 import Testimonials from './Testimonials'
 import PartnersSupporters from './PartnersSupporters'
+import FAQ from './FAQ'
+import Volunteer from './Volunteer'
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
       <FeaturedSection></FeaturedSection>
       <Testimonials></Testimonials>
       <PartnersSupporters></PartnersSupporters>
+      <FAQ></FAQ>
+      <Volunteer></Volunteer>
       <ContactUs></ContactUs>
     </div>
   )
