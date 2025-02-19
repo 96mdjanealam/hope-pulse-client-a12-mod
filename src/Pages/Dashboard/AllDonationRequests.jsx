@@ -132,33 +132,33 @@ export default function AllDonationRequests() {
               {item.donationStatus === "done" ? (
                 <button
                   onClick={() => handleCancel(item._id)}
-                  className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600 transition-colors"
+                  className="btn btn-xs btn-warning"
                 >
                   Cancel
                 </button>
               ) : (
                 <button
                   onClick={() => handleDone(item._id)}
-                  className="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600 transition-colors"
+                  className="btn btn-xs btn-success"
                 >
                   Done
                 </button>
               )}
               <Link to={`/dashboard/request/edit/${item._id}`}>
-                <button className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600 transition-colors">
+                <button className="btn btn-xs btn-success">
                   Edit
                 </button>
               </Link>
               {isAdmin && (
                 <button
                   onClick={() => handleDelete(item._id)}
-                  className="bg-gray-500 text-white px-2 py-1 rounded-md hover:bg-gray-600 transition-colors"
+                  className="btn btn-error btn-xs"
                 >
                   Delete
                 </button>
               )}
               <Link to={`/dashboard/request/view/${item._id}`}>
-                <button className="bg-purple-500 text-white px-2 py-1 rounded-md hover:bg-purple-600 transition-colors">
+                <button className="btn btn-xs btn-neutral">
                   View
                 </button>
               </Link>
