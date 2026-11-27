@@ -17,27 +17,9 @@ const auth = getAuth(app);
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
-
-  useEffect(() => {
-    if (user?.email) {
-      axiosSecure
-        .get(`/user?email=${user?.email}`)
-        .then((res) => {
-          setUserInfo(res?.data);
-        })
-        .catch((err) => {
-          console.error("Error fetching user data:", err);
-        });
-    }
-  }, [user,axiosSecure]);
-
-
-  const [loading, setLoading] = useState(true);
-
-  // state for dropdown in navbar
-  
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -45,9 +27,9 @@ export default function AuthProvider({ children }) {
   };
 
   const updateProfileInfo = (displayName, photoURL) => {
-    updateProfile(auth.currentUser, {
-      displayName: displayName,
-      photoURL: photoURL,
+    return updateProfile(auth.currentUser, {
+      displayName,
+      photoURL,
     });
   };
 
@@ -58,29 +40,40 @@ export default function AuthProvider({ children }) {
 
   const logOut = () => {
     setLoading(true);
+    setUserInfo(null);
     return signOut(auth);
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
 
-      if(currentUser){
-        const userInfo = {email: currentUser.email};
-        axiosPublic.post("jwt", userInfo).then((res)=>{
-          if(res.data.token){
-            localStorage.setItem("access-token", res.data.token)
+      if (currentUser?.email) {
+        try {
+          const jwtRes = await axiosPublic.post("/jwt", {
+            email: currentUser.email,
+          });
+          if (jwtRes.data?.token) {
+            localStorage.setItem("access-token", jwtRes.data.token);
           }
-        })
-      }else{
-        localStorage.removeItem("access-token")
+
+          const userRes = await axiosSecure.get(
+            `/user?email=${currentUser.email}`
+          );
+          setUserInfo(userRes.data);
+        } catch (err) {
+          console.error("Error syncing auth session:", err);
+        }
+      } else {
+        localStorage.removeItem("access-token");
+        setUserInfo(null);
       }
+
       setLoading(false);
     });
-    return () => {
-      unsubscribe();
-    };
-  }, [axiosPublic]);
+
+    return () => unsubscribe();
+  }, [axiosPublic, axiosSecure]);
 
   const authInfo = {
     user,
@@ -91,6 +84,7 @@ export default function AuthProvider({ children }) {
     signIn,
     logOut,
   };
+
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

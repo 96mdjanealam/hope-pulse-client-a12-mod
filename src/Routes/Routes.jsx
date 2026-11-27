@@ -1,125 +1,131 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../Layout/MainLayout";
-import Home from "../Pages/Home/Home";
-import Registration from "../Pages/Registration/Registration";
-import Login from "../Pages/Home/Login/Login";
-import Dashboard from "../Pages/Dashboard/Dashboard";
-import Profile from "../Pages/Shared/Profile";
-import DashboardHome from "../Pages/Dashboard/DashboardHome";
-import CreateDonation from "../Pages/Dashboard/CreateDonation";
-import EditRequest from "../Pages/Dashboard/EditRequest";
-import MyDonationRequests from "../Pages/Dashboard/MyDonationRequests";
-import AllDonationRequests from "../Pages/Dashboard/AllDonationRequests";
-import AllUsers from "../Pages/Dashboard/AllUsers";
-import ContentManagement from "../Pages/Dashboard/ContentManagement";
-import AddBlog from "../Pages/Dashboard/AddBlog";
-import Search from "../Pages/Search/Search";
-import PendingDonationRequests from "../Pages/PendingDonationRequests.jsx/PendingDonationRequests";
-import DonationRequestsDetails from "../Pages/DonationRequestsDetails/DonationRequestsDetails";
-import PublishedBlogs from "../Pages/PublishedBlogs/PublishedBlogs";
+import MainLayout from "../layouts/MainLayout";
+import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
-import ErrorPage from "../Pages/Shared/ErrorPage";
-import Payment from "../Pages/Home/Payment";
+import ErrorPage from "../components/shared/ErrorPage";
+
+import HomePage from "../pages/public/HomePage";
+import RegistrationPage from "../pages/public/RegistrationPage";
+import LoginPage from "../pages/public/LoginPage";
+import SearchDonorsPage from "../pages/public/SearchDonorsPage";
+import PendingRequestsPage from "../pages/public/PendingRequestsPage";
+import DonationDetailsPage from "../pages/public/DonationDetailsPage";
+import BlogsPage from "../pages/public/BlogsPage";
+import FundingPage from "../pages/public/FundingPage";
+
+import DashboardHomePage from "../pages/dashboard/DashboardHomePage";
+import ProfilePage from "../pages/dashboard/ProfilePage";
+import CreateDonationPage from "../pages/dashboard/CreateDonationPage";
+import EditRequestPage from "../pages/dashboard/EditRequestPage";
+import MyDonationRequestsPage from "../pages/dashboard/MyDonationRequestsPage";
+import AllDonationRequestsPage from "../pages/dashboard/AllDonationRequestsPage";
+import AllUsersPage from "../pages/dashboard/AllUsersPage";
+import ContentManagementPage from "../pages/dashboard/ContentManagementPage";
+import AddBlogPage from "../pages/dashboard/AddBlogPage";
 
 export const router = createBrowserRouter([
   {
-    path:"*",
-    element:<ErrorPage></ErrorPage>
+    path: "*",
+    element: <ErrorPage />,
   },
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
+    element: <MainLayout />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <HomePage />,
       },
       {
         path: "/registration",
-        element: <Registration></Registration>,
+        element: <RegistrationPage />,
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: <LoginPage />,
       },
       {
         path: "/searchDonors",
-        element: <Search></Search>,
+        element: <SearchDonorsPage />,
       },
       {
         path: "/pending-donation-requests",
-        element: <PendingDonationRequests></PendingDonationRequests>,
+        element: <PendingRequestsPage />,
       },
       {
         path: "/donation-request-details/:id",
         element: (
           <PrivateRoute>
-            <DonationRequestsDetails></DonationRequestsDetails>
+            <DonationDetailsPage />
           </PrivateRoute>
         ),
       },
       {
         path: "/blogs",
-        element: <PublishedBlogs></PublishedBlogs>,
+        element: <BlogsPage />,
       },
       {
         path: "/payment",
-        element:<PrivateRoute><Payment></Payment></PrivateRoute>
-      }
+        element: (
+          <PrivateRoute>
+            <FundingPage />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
     path: "/dashboard",
     element: (
       <PrivateRoute>
-        <Dashboard></Dashboard>
+        <DashboardLayout />
       </PrivateRoute>
     ),
     children: [
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>,
+        element: <DashboardHomePage />,
       },
       {
         path: "/dashboard/profile",
-        element: <Profile></Profile>,
+        element: <ProfilePage />,
       },
       {
         path: "/dashboard/createDonation",
-        element: <CreateDonation></CreateDonation>,
+        element: <CreateDonationPage />,
       },
       {
         path: "/dashboard/request/edit/:id",
-        element: <EditRequest></EditRequest>,
+        element: <EditRequestPage />,
       },
       {
         path: "/dashboard/request/view/:id",
-        element: <DonationRequestsDetails></DonationRequestsDetails>,
+        element: <DonationDetailsPage />,
       },
       {
         path: "/dashboard/my-donation-requests",
-        element: <MyDonationRequests></MyDonationRequests>,
+        element: <MyDonationRequestsPage />,
       },
       {
         path: "/dashboard/all-donation-requests",
-        element: <AllDonationRequests></AllDonationRequests>,
+        element: <AllDonationRequestsPage />,
       },
       {
         path: "/dashboard/all-users",
         element: (
           <AdminRoute>
-            <AllUsers></AllUsers>
+            <AllUsersPage />
           </AdminRoute>
         ),
       },
       {
         path: "/dashboard/content-management",
-        element: <ContentManagement></ContentManagement>,
+        element: <ContentManagementPage />,
       },
       {
         path: "/dashboard/content-management/add-blog",
-        element: <AddBlog></AddBlog>,
+        element: <AddBlogPage />,
       },
     ],
   },

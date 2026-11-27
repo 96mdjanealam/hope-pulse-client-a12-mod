@@ -6,9 +6,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "ysabeau-infant": ['Ysabeau Infant', "sans-serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
       },
     },
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: ["light"],
+  },
 };
